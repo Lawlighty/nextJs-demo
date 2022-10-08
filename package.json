@@ -5,11 +5,36 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "debugger": "cross-env NODE_OPTIONS='--inspect' next dev"
   },
   "dependencies": {
+    "@douyinfe/semi-ui": "^2.20.3",
+    "@types/axios": "^0.14.0",
+    "@types/classnames": "^2.3.1",
+    "@types/lodash": "^4.14.186",
+    "@types/showdown": "^2.0.0",
+    "axios": "^1.0.0",
+    "classnames": "^2.3.2",
+    "lodash": "^4.17.21",
     "next": "12.3.1",
+    "next-connect": "^0.13.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "showdown": "^2.1.0"
+  },
+  "devDependencies": {
+    "@douyinfe/semi-next": "^2.20.3",
+    "@types/eslint": "^8.4.6",
+    "@types/node": "^18.8.0",
+    "@types/react": "^18.0.21",
+    "@types/sass": "^1.43.1",
+    "cross-env": "^7.0.3",
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1",
+    "sass": "^1.55.0",
+    "typescript": "^4.8.4",
+    "typescript-plugin-css-modules": "^3.4.0"
   }
 }
