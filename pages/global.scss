@@ -8,6 +8,8 @@ html[data-theme="dark"] {
     --link-color: #34a8eb; // 链接 hover 上去的颜色
     --navbar-icon: url("../public/logo_dark.png");
     --theme-icon: url("../public/theme_dark.png");
+    --home-background-icon: url("../public/home_bg_dark.png");
+    --home-background-icon-webp: url("../public/home_bg_dark.webp");
 }
 
 html[data-theme="light"] {
@@ -19,6 +21,8 @@ html[data-theme="light"] {
     --link-color: #0070f3;
     --navbar-icon: url("../public/logo_light.png");
     --theme-icon: url("../public/theme_light.png");
+    --home-background-icon: url("../public/home_bg_light.png");
+    --home-background-icon-webp: url("../public/home_bg_light.webp");
 }
 html,
 body {

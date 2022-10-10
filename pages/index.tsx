@@ -17,7 +17,12 @@ interface IProps {
     link: string;
   }[];
 }
-const Home: NextPage<IProps & any> = ({ title, description, articles }) => {
+const Home: NextPage<IProps & any> = ({
+  title,
+  description,
+  articles,
+  isSupportWebp,
+}) => {
   const mainRef = useRef<HTMLDivElement>(null);
   const { theme } = useContext(ThemeContext);
   const [content, setContent] = useState(articles);
@@ -34,6 +39,12 @@ const Home: NextPage<IProps & any> = ({ title, description, articles }) => {
         className={cName([styles.main, styles.withAnimation])}
         ref={mainRef}
       >
+        <div
+          className={cName({
+            [styles.header]: true,
+            [styles.headerWebp]: isSupportWebp,
+          })}
+        ></div>
         <h1 className={styles.title}>{title}</h1>
 
         <p className={styles.description}>{description}</p>

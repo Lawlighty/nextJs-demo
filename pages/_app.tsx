@@ -3,13 +3,26 @@ import App from "next/app";
 import { Layout, ILayoutProps } from "@/components/layout";
 import Head from "next/head";
 import axios from "axios";
-import { getIsMobile, LOCALDOMAIN } from "@/utils";
+import { getIsMobile, LOCALDOMAIN, getIsSupportWebp } from "@/utils";
 import { ThemeContextProvider } from "@/stores/theme";
 import "./global.scss";
 import { UserAgentProvider } from "@/stores/userAgent";
+export interface IComponentProps {
+  isMobile?: boolean;
+  isSupportWebp?: boolean;
+}
 
-const MyApp = (data: AppProps & ILayoutProps & { isMobile: boolean }) => {
-  const { Component, pageProps, navbarData, footerData, isMobile } = data;
+const MyApp = (
+  data: AppProps & ILayoutProps & { isMobile: boolean; isSupportWebp: boolean }
+) => {
+  const {
+    Component,
+    pageProps,
+    navbarData,
+    footerData,
+    isMobile,
+    isSupportWebp,
+  } = data;
 
   return (
     <div>
@@ -28,7 +41,11 @@ const MyApp = (data: AppProps & ILayoutProps & { isMobile: boolean }) => {
       <ThemeContextProvider>
         <UserAgentProvider>
           <Layout navbarData={navbarData} footerData={footerData}>
-            <Component {...pageProps} />
+            <Component
+              {...pageProps}
+              isMobile={isMobile}
+              isSupportWebp={isSupportWebp}
+            />
           </Layout>
         </UserAgentProvider>
       </ThemeContextProvider>
@@ -44,6 +61,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
     ...pageProps,
     ...data,
     isMobile: getIsMobile(context),
+    isSupportWebp: getIsSupportWebp(context),
   };
 };
 
