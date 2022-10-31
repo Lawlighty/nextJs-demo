@@ -3,10 +3,13 @@ import styles from "./index.module.scss";
 import cName from "classnames";
 import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "@/stores/theme";
-import { Pagination } from "@douyinfe/semi-ui";
+import { Pagination, BackTop } from "@douyinfe/semi-ui";
 import axios from "axios";
 import { LOCALDOMAIN } from "@/utils";
 import { IArticleIntro } from "./api/articleIntro";
+import { UserAgentContext } from "@/stores/userAgent";
+import { Environment } from "@/constants/enum";
+import Naruto from "@/components/Naruto";
 
 interface IProps {
   title: string;
@@ -27,6 +30,34 @@ const Home: NextPage<IProps & any> = ({
   const { theme } = useContext(ThemeContext);
   const [content, setContent] = useState(articles);
 
+  const { userAgent } = useContext(UserAgentContext);
+  useEffect(() => {
+    const onscrollWindow = (): void => {
+      if (userAgent === Environment.mobile) {
+        return;
+      }
+      let mapDom = document.getElementById("ruins-map");
+      if (!mapDom) {
+        return;
+      }
+      let mapY = mapDom.getBoundingClientRect().top;
+      if (mapY <= 400) {
+        mapDom.classList.add("ani-show");
+      }
+    };
+    onscrollWindow();
+    document &&
+      document
+        .getElementById("__next")
+        .addEventListener("scroll", onscrollWindow);
+    return (): void => {
+      document &&
+        document
+          .getElementById("__next")
+          .removeEventListener("scroll", onscrollWindow);
+    };
+  }, []);
+
   useEffect(() => {
     mainRef.current?.classList.remove(styles.withAnimation);
     window.requestAnimationFrame(() => {
@@ -46,9 +77,7 @@ const Home: NextPage<IProps & any> = ({
           })}
         ></div>
         <h1 className={styles.title}>{title}</h1>
-
         <p className={styles.description}>{description}</p>
-
         <div className={styles.grid}>
           {content?.list?.map((item, index) => {
             return (
@@ -69,7 +98,6 @@ const Home: NextPage<IProps & any> = ({
             );
           })}
         </div>
-
         <div className={styles.paginationArea}>
           <Pagination
             total={content?.total}
@@ -96,6 +124,15 @@ const Home: NextPage<IProps & any> = ({
                 });
             }}
           />
+        </div>
+        {/* // ! pc */}
+        {userAgent !== Environment.mobile && (
+          <div id="ruins-map" className="ruins-map">
+            <div className="map"></div>
+          </div>
+        )}
+        <div className={styles.Naruto}>
+          <Naruto />
         </div>
       </main>
     </div>
