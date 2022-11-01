@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import { ThemeContext } from "@/stores/theme";
 import { UserAgentContext } from "@/stores/userAgent";
 import { Themes, Environment } from "@/constants/enum";
+import Peeling from "../Peeling";
 
 export interface INavBarProps {}
 
@@ -25,7 +26,8 @@ export const NavBar: FC<INavBarProps> = ({}) => {
         {userAgent === Environment.mobile && (
           <span className={styles.text}>当前是移动端样式</span>
         )}
-        <div
+        {/* 图片切换 */}
+        {/* <div
           className={styles.themeIcon}
           onClick={(): void => {
             if (localStorage.getItem("theme") === Themes.light) {
@@ -34,7 +36,8 @@ export const NavBar: FC<INavBarProps> = ({}) => {
               setTheme(Themes.light);
             }
           }}
-        ></div>
+        ></div> */}
+        <Peeling></Peeling>
       </div>
     </div>
   );
