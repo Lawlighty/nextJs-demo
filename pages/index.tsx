@@ -10,6 +10,7 @@ import { IArticleIntro } from "./api/articleIntro";
 import { UserAgentContext } from "@/stores/userAgent";
 import { Environment } from "@/constants/enum";
 import Naruto from "@/components/Naruto";
+import Weather from "@/components/Weather";
 
 interface IProps {
   title: string;
@@ -134,6 +135,7 @@ const Home: NextPage<IProps & any> = ({
         <div className={styles.Naruto}>
           <Naruto />
         </div>
+        <Weather></Weather>
       </main>
     </div>
   );
