@@ -11,6 +11,8 @@ import { UserAgentContext } from "@/stores/userAgent";
 import { Environment } from "@/constants/enum";
 import Naruto from "@/components/Naruto";
 import Weather from "@/components/Weather";
+import Rellax from "rellax";
+import Avatar from "@/components/Avatar";
 
 interface IProps {
   title: string;
@@ -32,7 +34,29 @@ const Home: NextPage<IProps & any> = ({
   const [content, setContent] = useState(articles);
 
   const { userAgent } = useContext(UserAgentContext);
+  const rellaxRef = useRef();
+
   useEffect(() => {
+    new Rellax(".animate", {
+      // <---- Via class name
+      speed: -10,
+      center: false,
+      // wrapper: null,
+      round: true,
+      vertical: true,
+      horizontal: false,
+    });
+
+    new Rellax(rellaxRef.current, {
+      // <---- Via useRef element
+      speed: -10,
+      center: false,
+      // wrapper: null,
+      round: true,
+      vertical: true,
+      horizontal: false,
+    });
+
     const onscrollWindow = (): void => {
       if (userAgent === Environment.mobile) {
         return;
@@ -71,14 +95,24 @@ const Home: NextPage<IProps & any> = ({
         className={cName([styles.main, styles.withAnimation])}
         ref={mainRef}
       >
+        <Avatar></Avatar>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.description}>{description}</p>
+
+        {/* // ! pc */}
+        {userAgent !== Environment.mobile && (
+          <div id="ruins-map" className="ruins-map">
+            <div className="map"></div>
+          </div>
+        )}
+
         <div
           className={cName({
             [styles.header]: true,
             [styles.headerWebp]: isSupportWebp,
           })}
         ></div>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.description}>{description}</p>
+
         <div className={styles.grid}>
           {content?.list?.map((item, index) => {
             return (
@@ -126,12 +160,7 @@ const Home: NextPage<IProps & any> = ({
             }}
           />
         </div>
-        {/* // ! pc */}
-        {userAgent !== Environment.mobile && (
-          <div id="ruins-map" className="ruins-map">
-            <div className="map"></div>
-          </div>
-        )}
+
         <div className={styles.Naruto}>
           <Naruto />
         </div>
