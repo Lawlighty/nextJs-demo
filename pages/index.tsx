@@ -13,6 +13,7 @@ import Naruto from "@/components/Naruto";
 import Weather from "@/components/Weather";
 import Rellax from "rellax";
 import Avatar from "@/components/Avatar";
+import HomePageHero from "@/components/HomePageHero";
 
 interface IProps {
   title: string;
@@ -90,83 +91,84 @@ const Home: NextPage<IProps & any> = ({
     });
   }, [theme]);
   return (
-    <div className={styles.container}>
-      <main
-        className={cName([styles.main, styles.withAnimation])}
-        ref={mainRef}
-      >
-        <Avatar></Avatar>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.description}>{description}</p>
-
-        {/* // ! pc */}
-        {userAgent !== Environment.mobile && (
-          <div id="ruins-map" className="ruins-map">
-            <div className="map"></div>
+    <>
+      <div>
+        <HomePageHero></HomePageHero>
+      </div>
+      <div className={styles.container}>
+        <main
+          className={cName([styles.main, styles.withAnimation])}
+          ref={mainRef}
+        >
+          <Avatar></Avatar>
+          <h1 className={styles.title}>{title}</h1>
+          <p className={styles.description}>{description}</p>
+          {/* // ! pc */}
+          {userAgent !== Environment.mobile && (
+            <div id="ruins-map" className="ruins-map">
+              <div className="map"></div>
+            </div>
+          )}
+          <div
+            className={cName({
+              [styles.header]: true,
+              [styles.headerWebp]: isSupportWebp,
+            })}
+          ></div>
+          <div className={styles.grid}>
+            {content?.list?.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className={styles.card}
+                  onClick={(): void => {
+                    window.open(
+                      item.link,
+                      "blank",
+                      "noopener=yes,noreferrer=yes"
+                    );
+                  }}
+                >
+                  <h2>{item.label} &rarr;</h2>
+                  <p>{item.info}</p>
+                </div>
+              );
+            })}
           </div>
-        )}
+          <div className={styles.paginationArea}>
+            <Pagination
+              total={content?.total}
+              pageSize={6}
+              onPageChange={(pageNo) => {
+                console.log("onPageChange", pageNo);
 
-        <div
-          className={cName({
-            [styles.header]: true,
-            [styles.headerWebp]: isSupportWebp,
-          })}
-        ></div>
-
-        <div className={styles.grid}>
-          {content?.list?.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={styles.card}
-                onClick={(): void => {
-                  window.open(
-                    item.link,
-                    "blank",
-                    "noopener=yes,noreferrer=yes"
-                  );
-                }}
-              >
-                <h2>{item.label} &rarr;</h2>
-                <p>{item.info}</p>
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.paginationArea}>
-          <Pagination
-            total={content?.total}
-            pageSize={6}
-            onPageChange={(pageNo) => {
-              console.log("onPageChange", pageNo);
-
-              axios
-                .post(`${LOCALDOMAIN}/api/articleIntro`, {
-                  pageNo: pageNo,
-                  pageSize: 6,
-                })
-                .then(({ data }) => {
-                  setContent({
-                    list: data.list.map((item: IArticleIntro) => {
-                      return {
-                        label: item.label,
-                        info: item.info,
-                        link: `${LOCALDOMAIN}/article/${item.articleId}`,
-                      };
-                    }),
-                    total: data.total,
+                axios
+                  .post(`${LOCALDOMAIN}/api/articleIntro`, {
+                    pageNo: pageNo,
+                    pageSize: 6,
+                  })
+                  .then(({ data }) => {
+                    setContent({
+                      list: data.list.map((item: IArticleIntro) => {
+                        return {
+                          label: item.label,
+                          info: item.info,
+                          link: `${LOCALDOMAIN}/article/${item.articleId}`,
+                        };
+                      }),
+                      total: data.total,
+                    });
                   });
-                });
-            }}
-          />
-        </div>
-
-        <div className={styles.Naruto}>
-          <Naruto />
-        </div>
-        <Weather></Weather>
-      </main>
-    </div>
+              }}
+            />
+          </div>
+          <div className={styles.Naruto}>
+            <Naruto />
+          </div>
+          <Weather></Weather>
+        </main>
+      </div>
+    </>
   );
 };
 

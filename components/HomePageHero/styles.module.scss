@@ -1,0 +1,103 @@
+.homePage-hero {
+    background-image: url("../../public/images/hero_test_back_reupload.png");
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 60px auto 2fr;
+    grid-template-columns: 23% 1fr 23%;
+    background-position: center;
+}
+
+.hero-overlay {
+    background-image: url("../../public/images/hero_test_front_4.png");
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    z-index: 3;
+    background-position: center;
+    grid-column: span 3;
+}
+
+.react-parallax-bgimage {
+    z-index: 3;
+    width: 100vw !important;
+    height: auto !important;
+    transition: transform ease-out 0.3s;
+    top: calc(30vw / 2);
+}
+
+.homePage-hero-title {
+    margin: 0;
+    color: #202020;
+    // margin-top: 9vh;
+    /* grid-row: 2;
+  grid-column: 2; */
+    font-size: 11vw;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 7px 7px 10px rgba(0, 0, 0, 0.34);
+    display: inline-block;
+    /* top: 20%;
+  position: absolute;
+  left: 0;
+  right: 0; */
+}
+
+.homePage-hero-subtitle {
+    margin: 0 0 0 20%;
+    color: #940000;
+    /* grid-row: 3;
+  grid-column: 2; */
+    font-size: calc(16px + 1vw);
+    font-weight: 600;
+    text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.192);
+    display: inline-block;
+    height: fit-content;
+}
+
+.homePage-map {
+    height: 100vh;
+    width: 100%;
+    /* display: grid;
+  grid-template-rows: 200px 1fr; */
+    background-image: url("../../public/images/japan_background.svg");
+    /* background-color: #fffffd; */
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+.homePage-map ul {
+    z-index: 1;
+    padding: 0;
+}
+
+.map {
+    background-color: #fffffd;
+    background-size: cover;
+    background-position: center;
+    transition: all ease 0.5s;
+    background-image: none;
+}
+
+.hero-parallax-wrapper-slow {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.hero-parallax-wrapper-fast,
+.hero-background {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.hero-background {
+    overflow: hidden;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 60px auto 2fr;
+    grid-template-columns: 23% 1fr 23%;
+    height: 70%;
+}
