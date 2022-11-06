@@ -11,6 +11,11 @@
   opacity: 1;
 }
 
+.introduce{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .Naruto{
   position: fixed;
   right: 3.5rem;

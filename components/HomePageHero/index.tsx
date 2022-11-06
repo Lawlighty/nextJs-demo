@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import Parallax from "react-rellax";
 import Rellax from "rellax";
 import styles from "./styles.module.scss";
 const HomePageHero = () => {
@@ -8,19 +7,11 @@ const HomePageHero = () => {
     let rellax = new Rellax(".rellax", {
       wrapper: "#__next",
     });
-    console.log("rellax", rellax);
   });
   return (
     <>
       <section className={styles["homePage-hero"]}>
         <div className={styles["hero-background"]}>
-          {/* <div className="explore-div">
-            <h6>Explore Destinations</h6>
-            <a href="#map">
-              <img src="/images/down_arrow.svg" alt="down arrow" />
-            </a>
-          </div> */}
-
           <div className={styles["hero-parallax-wrapper-slow"]}>
             {/* <Parallax speed={-8}> */}
             <div className="rellax" data-rellax-speed="-8">

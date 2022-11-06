@@ -14,6 +14,8 @@ import Weather from "@/components/Weather";
 import Rellax from "rellax";
 import Avatar from "@/components/Avatar";
 import HomePageHero from "@/components/HomePageHero";
+import { Col, Row } from "@douyinfe/semi-ui";
+import Introduce from "@/components/Introduce";
 
 interface IProps {
   title: string;
@@ -100,21 +102,27 @@ const Home: NextPage<IProps & any> = ({
           className={cName([styles.main, styles.withAnimation])}
           ref={mainRef}
         >
-          <Avatar></Avatar>
-          <h1 className={styles.title}>{title}</h1>
-          <p className={styles.description}>{description}</p>
-          {/* // ! pc */}
-          {userAgent !== Environment.mobile && (
-            <div id="ruins-map" className="ruins-map">
-              <div className="map"></div>
-            </div>
-          )}
-          <div
+          <Row
+            type="flex"
+            justify="center"
+            align="middle"
+            style={{ width: "100%" }}
+          >
+            <Col className={styles.introduce} xs={24} lg={12}>
+              <Avatar></Avatar>
+              {/* <h1 className={styles.title}>{title}</h1>
+              <p className={styles.description}>{description}</p> */}
+            </Col>
+            <Col className={styles.introduce} xs={24} lg={12}>
+              <Introduce></Introduce>
+            </Col>
+          </Row>
+          {/* <div
             className={cName({
               [styles.header]: true,
               [styles.headerWebp]: isSupportWebp,
             })}
-          ></div>
+          ></div> */}
           <div className={styles.grid}>
             {content?.list?.map((item, index) => {
               return (
@@ -135,7 +143,7 @@ const Home: NextPage<IProps & any> = ({
               );
             })}
           </div>
-          <div className={styles.paginationArea}>
+          {/* <div className={styles.paginationArea}>
             <Pagination
               total={content?.total}
               pageSize={6}
@@ -161,7 +169,13 @@ const Home: NextPage<IProps & any> = ({
                   });
               }}
             />
-          </div>
+          </div> */}
+          {/* // ! pc */}
+          {userAgent !== Environment.mobile && (
+            <div id="ruins-map" className="ruins-map">
+              <div className="map"></div>
+            </div>
+          )}
           <div className={styles.Naruto}>
             <Naruto />
           </div>

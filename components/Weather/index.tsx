@@ -19,6 +19,7 @@ const WeatherCmp = () => {
   };
   const initWeather = (city: string) => {
     if (!city) return;
+    if (!AMap) return;
     AMap.plugin("AMap.Weather", function () {
       //创建天气查询实例
       var weather = new AMap.Weather();
