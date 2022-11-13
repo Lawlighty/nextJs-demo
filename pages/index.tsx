@@ -16,6 +16,7 @@ import Avatar from "@/components/Avatar";
 import HomePageHero from "@/components/HomePageHero";
 import { Col, Row } from "@douyinfe/semi-ui";
 import Introduce from "@/components/Introduce";
+import LawTimeLine from "@/components/LawTimeLine";
 
 interface IProps {
   title: string;
@@ -170,6 +171,9 @@ const Home: NextPage<IProps & any> = ({
               }}
             />
           </div> */}
+
+          <LawTimeLine></LawTimeLine>
+
           {/* // ! pc */}
           {userAgent !== Environment.mobile && (
             <div id="ruins-map" className="ruins-map">

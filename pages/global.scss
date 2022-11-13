@@ -7,7 +7,7 @@ html[data-theme="dark"] {
     --navbar-background-color: rgba(0, 0, 0, 0.5); // navbar组件的背景色
     --secondary-color: rgba(255, 255, 255, 0.5); // 次一级，色值没那么显眼的字体颜色
     --link-color: #34a8eb; // 链接 hover 上去的颜色
-    --navbar-icon: url("../public/logo_dark.png");
+    --navbar-icon: url("../public/lawlighty_dark.png");
     --theme-icon: url("../public/theme_dark.png");
     --home-background-icon: url("../public/home_bg_dark.png");
     --home-background-icon-webp: url("../public/home_bg_dark.webp");
@@ -20,7 +20,7 @@ html[data-theme="light"] {
     --navbar-background-color: rgba(255, 255, 255, 0.5);
     --secondary-color: #666666;
     --link-color: #0070f3;
-    --navbar-icon: url("../public/logo_light.png");
+    --navbar-icon: url("../public/lawlighty_light.png");
     --theme-icon: url("../public/theme_light.png");
     --home-background-icon: url("../public/home_bg_light.png");
     --home-background-icon-webp: url("../public/home_bg_light.webp");

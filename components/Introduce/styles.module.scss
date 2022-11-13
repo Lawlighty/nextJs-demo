@@ -10,9 +10,9 @@ $wordCount: 5;
     height: 500px;
     // width: 100vw;
     // height: 100vh;
-    background: #000;
+    background-color: var(--navbar-background-color);
     // font-family: 'Montserrat', sans-serif;
-    color: #fff;
+    color: var(--primary-color);
     font-size: 5rem;
     filter: contrast(100);
 }

@@ -27,16 +27,14 @@ const MyApp = (
   return (
     <div>
       <Head>
-        <title>{`A Demo for 《深入浅出SSR官网开发指南》(${
+        <title>{`Lawlighty 的 个人站点~(${
           isMobile ? "移动端" : "pc端"
         })`}</title>
         <meta
           name="description"
-          content={`A Demo for 《深入浅出SSR官网开发指南》(${
-            isMobile ? "移动端" : "pc端"
-          })`}
+          content={`Lawlighty 的 个人站点~(${isMobile ? "移动端" : "pc端"})`}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/l.svg.ico" />
       </Head>
       <ThemeContextProvider>
         <UserAgentProvider>
