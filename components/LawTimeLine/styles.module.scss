@@ -1,0 +1,9 @@
+
+.law_time_line{
+    width: 100%;
+    :global {
+        .semi-timeline-item-tail {
+            border-color: var(--primary-color) ;
+        }
+    }
+}

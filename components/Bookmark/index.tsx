@@ -1,5 +1,8 @@
+import { Environment } from "@/constants/enum";
+import { UserAgentContext } from "@/stores/userAgent";
 import { Card, Avatar } from "@douyinfe/semi-ui";
 import classnames from "classnames";
+import { useContext } from "react";
 import styles from "./styles.module.scss";
 interface IBookmarkProps {
   alignRight?: boolean;
@@ -17,11 +20,13 @@ const Bookmark = (props: IBookmarkProps) => {
     img = "",
     desc = "",
   } = props;
+
+  const { userAgent } = useContext(UserAgentContext);
   return (
     <div
       className={classnames({
         [styles["left"]]: !alignRight,
-        [styles["right"]]: alignRight,
+        [styles["right"]]: userAgent !== Environment.mobile && alignRight,
       })}
       onClick={(): void => {
         window.open(url, "blank", "noopener=yes,noreferrer=yes");

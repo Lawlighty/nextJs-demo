@@ -1,7 +1,12 @@
+import { Environment } from "@/constants/enum";
+import { UserAgentContext } from "@/stores/userAgent";
 import { Timeline, Spin } from "@douyinfe/semi-ui";
+import { useContext } from "react";
 import Bookmark from "../Bookmark";
-
+import styles from "./styles.module.scss";
 const LawTimeLine = () => {
+  const { userAgent } = useContext(UserAgentContext);
+
   const DATASOURCE = [
     {
       time: "2021-10",
@@ -48,9 +53,12 @@ const LawTimeLine = () => {
     },
   ];
   return (
-    <>
-      <Timeline mode="alternate" dataSource={DATASOURCE} />
-    </>
+    <div className={styles["law_time_line"]}>
+      <Timeline
+        mode={userAgent === Environment.mobile ? "left" : "alternate"}
+        dataSource={DATASOURCE}
+      />
+    </div>
   );
 };
 export default LawTimeLine;

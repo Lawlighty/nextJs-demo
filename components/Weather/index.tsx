@@ -20,50 +20,58 @@ const WeatherCmp = () => {
   const initWeather = (city: string) => {
     if (!city) return;
     if (!AMap) return;
-    AMap.plugin("AMap.Weather", function () {
-      //创建天气查询实例
-      var weather = new AMap.Weather();
+    try {
+      AMap.plugin("AMap.Weather", function () {
+        //创建天气查询实例
+        var weather = new AMap.Weather();
 
-      //执行实时天气信息查询
-      weather.getLive(city, function (err, data) {
-        console.log("执行实时天气信息查询", data);
+        //执行实时天气信息查询
+        weather.getLive(city, function (err, data) {
+          console.log("执行实时天气信息查询", data);
 
-        if (!err) {
-          getWeatherType(data?.weather);
-        }
+          if (!err) {
+            getWeatherType(data?.weather);
+          }
+        });
       });
-    });
+    } catch (error) {
+      console.error("AMap initWeather error", error);
+    }
   };
   const initCity = () => {
-    AMap.plugin("AMap.Geolocation", function () {
-      var geolocation = new AMap.Geolocation({
-        // 是否使用高精度定位，默认：true
-        enableHighAccuracy: true,
-        // 设置定位超时时间，默认：无穷大
-        timeout: 10000,
-        // 定位按钮的停靠位置的偏移量
-        offset: [10, 20],
-        //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-        zoomToAccuracy: true,
-        //  定位按钮的排放位置,  RB表示右下
-        position: "RB",
-      });
+    try {
+      AMap.plugin("AMap.Geolocation", function () {
+        var geolocation = new AMap.Geolocation({
+          // 是否使用高精度定位，默认：true
+          enableHighAccuracy: true,
+          // 设置定位超时时间，默认：无穷大
+          timeout: 10000,
+          // 定位按钮的停靠位置的偏移量
+          offset: [10, 20],
+          //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+          zoomToAccuracy: true,
+          //  定位按钮的排放位置,  RB表示右下
+          position: "RB",
+        });
 
-      //   geolocation.getCurrentPosition(function (status, result) {
-      //     console.log(status, result);
-      //     if (status == "complete") {
-      //       onComplete(result);
-      //     } else {
-      //       onError(result);
-      //     }
-      //   });
+        //   geolocation.getCurrentPosition(function (status, result) {
+        //     console.log(status, result);
+        //     if (status == "complete") {
+        //       onComplete(result);
+        //     } else {
+        //       onError(result);
+        //     }
+        //   });
 
-      geolocation.getCityInfo(function (status, result) {
-        console.log("getCityInfo", status);
-        console.log("getCityInfo result", result);
-        initWeather(result?.province ?? "");
+        geolocation.getCityInfo(function (status, result) {
+          console.log("getCityInfo", status);
+          console.log("getCityInfo result", result);
+          initWeather(result?.province ?? "");
+        });
       });
-    });
+    } catch (error) {
+      console.error("AMap initCity error", error);
+    }
   };
   useEffect(() => {
     initCity();
