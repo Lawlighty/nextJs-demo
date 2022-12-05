@@ -79,8 +79,8 @@ export const Footer: FC<IFooterProps> = ({
             <Image
               src={qrCode?.image}
               alt={qrCode?.text}
-              width={56}
-              height={56}
+              width={200}
+              height={200}
             ></Image>
           </div>
           <div className={styles.text}>{qrCode?.text}</div>

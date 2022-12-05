@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 const LawTimeLine = () => {
   const { userAgent } = useContext(UserAgentContext);
 
-  const DATASOURCE = [
+  const DATASOURCE: any[] = [
     {
       time: "2021-10",
       extra: "个人博客",
